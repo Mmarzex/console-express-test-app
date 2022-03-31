@@ -1,0 +1,69 @@
+# org: maxmarzetest123
+# org: maxmarzetest1234
+# org: maxmarzetest12345
+org: maxmarze
+console: true
+service: aws-node-express-api-project
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  environment:
+    DEBUG_SLS_OTEL_LAYER: true
+    # SLS_OTEL_REPORT_LOGS_URL: https://core.serverless-dev.com/ingestion/kinesis/v1/logs
+    # SLS_OTEL_REPORT_REQUEST_RESPONSE_URL: https://marze.core.serverless-dev.com/ingestion/kinesis/v1/request-response
+
+functions:
+  api:
+    handler: handler.handler
+    events:
+      - httpApi: '*'
+
+# stepFunctions:
+#   stateMachines:
+#     testStateMachine:
+#       name: TestStateMachine-${sls:stage}
+#       # events:
+#       #   - schedule: rate(1 minute)
+#       definition:
+#         Comment: Test State Machine
+#         StartAt: First function
+#         States:
+#           First function:
+#             Type: Task
+#             Resource: !GetAtt entry.Arn
+#             OutputPath: "$.Payload"
+#             Parameters:
+#               Payload.$: "$"
+#             Retry:
+#             - ErrorEquals:
+#               - Lambda.ServiceException
+#               - Lambda.AWSLambdaException
+#               - Lambda.SdkClientException
+#               IntervalSeconds: 2
+#               MaxAttempts: 6
+#               BackoffRate: 2
+#             Next: Wait
+#           Wait:
+#             Type: Wait
+#             Seconds: 5
+#             Next: Second function
+#           Second function:
+#             Type: Task
+#             Resource: !GetAtt second.Arn
+#             OutputPath: "$.Payload"
+#             Parameters:
+#               Payload.$: "$"
+#             Retry:
+#             - ErrorEquals:
+#               - Lambda.ServiceException
+#               - Lambda.AWSLambdaException
+#               - Lambda.SdkClientException
+#               IntervalSeconds: 2
+#               MaxAttempts: 6
+#               BackoffRate: 2
+#             End: true
+# plugins:
+  # - serverless-esbuild
+#   - serverless-step-functions

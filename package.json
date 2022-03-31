@@ -1,0 +1,15 @@
+{
+  "name": "aws-node-express-api-project",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "express": "^4.17.1",
+    "serverless-http": "^2.7.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.14.29",
+    "serverless": "^3.10.0",
+    "serverless-esbuild": "^1.26.1",
+    "serverless-step-functions": "^3.5.1"
+  }
+}
